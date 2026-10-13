@@ -3,6 +3,11 @@
 > [!NOTE]
 > This document is inherited from nix-bitcoin, the predecessor project. It is a work in progress and may be outdated.
 
+> [!WARNING]
+> This documentation may be outdated or contain installation steps that do not work with
+> bitcoinix yet (for example, release fetching still points at the upstream nix-bitcoin project).
+> Please report problems at <https://github.com/bitcoinix/bitcoinix/issues>.
+
 1. Add a new ssh key to your nix-bitcoin node
 
    Krops doesn't automatically generate ssh keys like NixOps, instead you add your own.

@@ -3,8 +3,13 @@
 > [!NOTE]
 > This document is inherited from nix-bitcoin, the predecessor project. It is a work in progress and may be outdated.
 
+> [!WARNING]
+> This documentation may be outdated or contain installation steps that do not work with
+> bitcoinix yet (for example, release fetching still points at the upstream nix-bitcoin project).
+> Please report problems at <https://github.com/bitcoinix/bitcoinix/issues>.
+
 This tutorial describes how to manage your Bitcoin node comfortably from your personal computer with the deployment tool [krops](https://github.com/krebs/krops).
-However, bitcoinix is agnostic to the deployment method and can be used with different or without such tools (see [examples](../examples/README.md)).
+However, bitcoinix is agnostic to the deployment method and can be used with different or without such tools (see [examples](https://github.com/bitcoinix/bitcoinix/blob/master/examples/README.md)).
 
 ## 0. Preparation
 
@@ -213,7 +218,7 @@ You can also build Nix from source by following the instructions at https://nixo
 1. Clone this project
 
     ```
-    git clone https://github.com/fort-nix/nix-bitcoin
+    git clone https://github.com/bitcoinix/bitcoinix
     ```
 
 2. Create a new directory for your bitcoinix node config and copy initial files from bitcoinix
@@ -221,14 +226,20 @@ You can also build Nix from source by following the instructions at https://nixo
     ```
     mkdir nix-bitcoin-node
     cd nix-bitcoin-node
-    cp -r ../nix-bitcoin/examples/{configuration.nix,shell.nix,krops,.gitignore} .
+    cp -r ../bitcoinix/examples/{configuration.nix,shell.nix,krops,.gitignore} .
     ```
 
 3. Obtain the hash of the latest bitcoinix release
 
     ```
-    ../nix-bitcoin/helper/fetch-release > nix-bitcoin-release.nix
+    ../bitcoinix/helper/fetch-release > nix-bitcoin-release.nix
     ```
+
+    > [!WARNING]
+    > `fetch-release` is not adapted to bitcoinix yet: it still downloads and verifies the latest
+    > release of the archived upstream project
+    > ([fort-nix/nix-bitcoin](https://github.com/fort-nix/nix-bitcoin)), not of bitcoinix.
+    > bitcoinix does not publish signed releases yet.
 
 #### Optional: Specify the system of your node
 This enables evaluating your node config on a machine that has a different system platform

@@ -3,6 +3,11 @@
 > [!NOTE]
 > This document is inherited from nix-bitcoin, the predecessor project. It is a work in progress and may be outdated.
 
+> [!WARNING]
+> This documentation may be outdated or contain installation steps that do not work with
+> bitcoinix yet (for example, release fetching still points at the upstream nix-bitcoin project).
+> Please report problems at <https://github.com/bitcoinix/bitcoinix/issues>.
+
 This section applies to users of the deployment method described in the [installation guide](./install.md).
 
 ## Deployment shell
@@ -34,8 +39,8 @@ For a general introduction to the Nix and NixOS ecosystem, see [nix.dev](https:/
 ## Set options
 
 All features and services are configurable through options. You can find a list of
-supported options at the top of each bitcoinix [module](../modules/modules.nix)
-(Examples: [bitcoind.nix](../modules/bitcoind.nix), [btcpayserver.nix](../modules/btcpayserver.nix)).
+supported options at the top of each bitcoinix [module](https://github.com/bitcoinix/bitcoinix/blob/master/modules/modules.nix)
+(Examples: [bitcoind.nix](https://github.com/bitcoinix/bitcoinix/blob/master/modules/bitcoind.nix), [btcpayserver.nix](https://github.com/bitcoinix/bitcoinix/blob/master/modules/btcpayserver.nix)).
 
 Example: Set some `bitcoind` options by adding these lines to your `configuration.nix`:
 ```nix

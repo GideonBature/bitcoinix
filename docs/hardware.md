@@ -17,6 +17,6 @@ Tested low-end hardware includes:
 - [Gigabyte GB-BACE-3150](https://www.gigabyte.com/Mini-PcBarebone/GB-BACE-3150-rev-10)
 - [Gigabyte GB-BACE-3160](https://www.gigabyte.com/de/Mini-PcBarebone/GB-BACE-3160-rev-10#ov)
 
-Some hardware (including Intel NUCs) may not be compatible with the [hardened kernel preset](../modules/presets/hardened.nix)
+Some hardware (including Intel NUCs) may not be compatible with the [hardened kernel preset](https://github.com/bitcoinix/bitcoinix/blob/master/modules/presets/hardened.nix)
 (See https://github.com/fort-nix/nix-bitcoin/issues/39#issuecomment-517366093
 for a workaround).

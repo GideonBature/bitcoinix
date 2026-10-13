@@ -103,7 +103,7 @@ NixOS modules ([src](modules/modules.nix))
 * Application services
   * [bitcoind](https://github.com/bitcoin/bitcoin)
   * [clightning](https://github.com/ElementsProject/lightning) with support for announcing an onion service
-    and [database replication](docs/services.md#setup-clightning-database-replication).\
+    and [database replication](docs/services.md#clightning-database-replication).\
     Available plugins:
     * [clboss](https://github.com/ZmnSCPxj/clboss): automated C-Lightning Node Manager
     * [clnrest](https://docs.corelightning.org/docs/rest): REST API and websocket notifications for clightning

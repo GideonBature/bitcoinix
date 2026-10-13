@@ -444,7 +444,7 @@ lndconnect-wg --url
 
 ## Plugins
 There is a number of [plugins](https://github.com/lightningd/plugins) available for clightning.
-See [`Readme: Features → clightning`](../README.md#features) or [search.nixos.org][1] for a complete list.
+See [`Readme: Features → clightning`](https://github.com/bitcoinix/bitcoinix/blob/master/README.md) or [search.nixos.org][1] for a complete list.
 
 [1]: https://search.nixos.org/flakes?channel=unstable&from=0&size=30&sort=relevance&type=options&query=services.clightning.plugins
 
@@ -460,7 +460,7 @@ services.clightning = {
 };
 ```
 
-Please have a look at the module for a plugin (e.g. [clboss.nix](../modules/clightning-plugins/clboss.nix)) to learn its configuration options.
+Please have a look at the module for a plugin (e.g. [clboss.nix](https://github.com/bitcoinix/bitcoinix/blob/master/modules/clightning-plugins/clboss.nix)) to learn its configuration options.
 
 ### Trustedcoin
 When `services.clightning.tor.proxy` is enabled, [trustedcoin](https://github.com/nbd-wtf/trustedcoin)

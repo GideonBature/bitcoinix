@@ -4,6 +4,11 @@
 > This project and its documentation are a work in progress. Parts of the project and
 > the documentation may change and may be outdated.
 
+> [!WARNING]
+> This documentation may be outdated or contain installation steps that do not work with
+> bitcoinix yet (for example, release fetching still points at the upstream nix-bitcoin project).
+> Please report problems at <https://github.com/bitcoinix/bitcoinix/issues>.
+
 **bitcoinix** is a collection of Nix packages and NixOS modules for easily installing
 full-featured Bitcoin nodes with an emphasis on security.
 

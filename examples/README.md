@@ -18,8 +18,8 @@ It leaves no traces (outside of `/nix/store`) on the host system.
 
 Clone this repo and enter the examples shell:
 ```bash
-git clone https://github.com/fort-nix/nix-bitcoin
-cd nix-bitcoin/examples/
+git clone https://github.com/bitcoinix/bitcoinix
+cd bitcoinix/examples/
 nix-shell
 ```
 
