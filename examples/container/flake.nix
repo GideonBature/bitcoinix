@@ -1,8 +1,8 @@
 # See how this flake is used in ./usage.sh
 
 # See also:
-# https://github.com/erikarvstedt/extra-container
-# https://github.com/erikarvstedt/extra-container/blob/master/examples/flake
+# https://github.com/extra-container/extra-container
+# https://github.com/extra-container/extra-container/blob/main/examples/flake
 # Container-related NixOS options
 # https://search.nixos.org/options?channel=unstable&query=containers.%3Cname%3E
 
@@ -16,7 +16,10 @@
 
     nixpkgs.follows = "nix-bitcoin/nixpkgs";
     nixpkgs-unstable.follows = "nix-bitcoin/nixpkgs-unstable";
-    extra-container.follows = "nix-bitcoin/extra-container";
+    extra-container = {
+      url = "github:extra-container/extra-container/v0.17";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { nixpkgs, nix-bitcoin, extra-container, ... }:
@@ -31,9 +34,6 @@
         # legacyInstallDirs = true;
 
         config = {
-          # See the file for why this is needed and when it can be removed
-          imports = [ (nix-bitcoin.outPath + "/test/lib/extra-container-workaround.nix") ];
-
           containers.mynode = {
             # Always start container along with the container host
             autoStart = true;
