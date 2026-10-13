@@ -1,3 +1,6 @@
+> [!NOTE]
+> This document is inherited from nix-bitcoin, the predecessor project. It is a work in progress and may be outdated.
+
 - **Q:** The clightning service is running but when I try to use it (f.e. by running
   `lightning-cli getinfo` as user operator) all I get is `lightning-cli: Connecting
   to 'lightning-rpc': Connection refused`.\

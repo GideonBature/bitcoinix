@@ -1,5 +1,8 @@
 # Tutorial: Moving from a NixOps to a Krops deployment
 
+> [!NOTE]
+> This document is inherited from nix-bitcoin, the predecessor project. It is a work in progress and may be outdated.
+
 1. Add a new ssh key to your nix-bitcoin node
 
    Krops doesn't automatically generate ssh keys like NixOps, instead you add your own.

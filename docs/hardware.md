@@ -1,5 +1,9 @@
 Hardware requirements
 ---
+
+> [!NOTE]
+> This document is inherited from nix-bitcoin, the predecessor project. It is a work in progress and may be outdated.
+
 * RAM: 2GB. ECC memory is better. Additionally, it's recommended to use DDR4 memory with
   targeted row refresh (TRR) enabled (https://rambleed.com/).
 * Disk space: 1 TB for an unpruned

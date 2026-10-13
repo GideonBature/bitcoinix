@@ -1,0 +1,52 @@
+name: bitcoinix docs
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'docs/**'
+      - 'book.toml'
+      - '.github/workflows/docs.yml'
+  pull_request:
+    paths:
+      - 'docs/**'
+      - 'book.toml'
+      - '.github/workflows/docs.yml'
+
+permissions:
+  contents: read
+
+# Strategy:
+# Job `build` builds the docs with mdBook on PRs and on `master` and uploads the result
+# as a Pages artifact.
+# Job `deploy` publishes the artifact to GitHub Pages and only runs on `master`:
+# The default `github-pages` environment rejects deployments from non-default branches.
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: cachix/install-nix-action@v31
+      - name: Build docs
+        run: nix shell --inputs-from . nixpkgs#mdbook -c mdbook build
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: book
+
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    steps:
+      - uses: actions/configure-pages@v5
+      - id: deployment
+        uses: actions/deploy-pages@v4

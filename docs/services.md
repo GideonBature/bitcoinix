@@ -1,3 +1,6 @@
+> [!NOTE]
+> This document is inherited from nix-bitcoin, the predecessor project. It is a work in progress and may be outdated.
+
 # Nodeinfo
 Run `nodeinfo` to see onion addresses and local addresses for enabled services.
 
@@ -30,7 +33,7 @@ systemctl show bitcoind
 
 The clightning database can be replicated to a local path
 or to a remote SSH target.\
-When remote replication is enabled, nix-bitcoin mounts a SSHFS to a local path.\
+When remote replication is enabled, bitcoinix mounts a SSHFS to a local path.\
 Optionally, backups can be encrypted via `gocryptfs`.
 
 Note: You should also backup the static file `hsm_secret` (located at
@@ -56,11 +59,11 @@ or via the `services.backups` module.
 
 2. Deploy
 
-3. To allow SSH access from the nix-bitcoin node to the target node, either
+3. To allow SSH access from the bitcoinix node to the target node, either
    use the remote node config below, or copy the contents of `$secretsDir/clightning-replication-ssh.pub`
    to the `authorized_keys` file of `user` (or use `ssh-copy-id`).
 
-4. You can restrict the nix-bitcoin node's capabilities on the SSHFS target
+4. You can restrict the bitcoinix node's capabilities on the SSHFS target
    using OpenSSH's builtin features, as detailed
    [here](https://serverfault.com/questions/354615/allow-sftp-but-disallow-ssh).
 
@@ -94,7 +97,7 @@ or via the `services.backups` module.
    users.groups.nb-replication = {};
    ```
 
-   With this setup, the corresponding `sshfs.destination` on the nix-bitcoin
+   With this setup, the corresponding `sshfs.destination` on the bitcoinix
    node is `"nb-replication@hostname:writable"`.
 
 ## Local directory target
@@ -340,7 +343,7 @@ lndconnect-wg --url
     Network > Server: <electrs onion address>:t
     ```
 
-# Connect to nix-bitcoin node through the SSH onion service
+# Connect to bitcoinix node through the SSH onion service
 1. Get the SSH onion address (excluding the port suffix)
 
     ```
@@ -364,7 +367,7 @@ lndconnect-wg --url
     };
     ```
 
-4. Connect to your nix-bitcoin node's SSH onion service, forwarding a local port to the nix-bitcoin node's SSH server
+4. Connect to your bitcoinix node's SSH onion service, forwarding a local port to the bitcoinix node's SSH server
 
     ```
     ssh -i ~/.ssh/id_ed25519 -L <random port of your choosing>:127.0.0.1:22 root@<SSH onion address>
@@ -390,7 +393,7 @@ lndconnect-wg --url
 
 2. Deploy new `configuration.nix`
 
-3. Check that your nix-bitcoin node recognizes your Trezor
+3. Check that your bitcoinix node recognizes your Trezor
 
     ```
     ssh operator@bitcoin-node
@@ -435,7 +438,7 @@ lndconnect-wg --url
     hwi enumerate
     ```
 
-8. Follow Bitcoin Core's instructions on [Using Bitcoin Core with Hardware Wallets](https://github.com/bitcoin-core/HWI/blob/master/docs/bitcoin-core-usage.md) to use your Trezor with `bitcoin-cli` on your nix-bitcoin node
+8. Follow Bitcoin Core's instructions on [Using Bitcoin Core with Hardware Wallets](https://github.com/bitcoin-core/HWI/blob/master/docs/bitcoin-core-usage.md) to use your Trezor with `bitcoin-cli` on your bitcoinix node
 
 # clightning
 

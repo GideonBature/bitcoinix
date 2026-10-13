@@ -1,0 +1,13 @@
+[book]
+title = "bitcoinix"
+description = "NixOS modules and Nix packages for deploying security-focused Bitcoin/Lightning nodes"
+language = "en"
+src = "docs"
+
+[build]
+build-dir = "book"
+# Fail the build when a page listed in SUMMARY.md is missing
+create-missing = false
+
+[output.html]
+git-repository-url = "https://github.com/bitcoinix/bitcoinix"

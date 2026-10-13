@@ -1,3 +1,6 @@
+> [!NOTE]
+> This documentation may be outdated. It is being updated.
+
 This directory contains docs and helper scripts for developing and debugging:
 
 - [`dev.sh`](./dev.sh): misc dev helpers
