@@ -1,0 +1,8 @@
+# Agent/tooling working directory
+.claude/
+
+# Working files not planned to be committed
+__*
+
+# Nix build output symlink
+result
