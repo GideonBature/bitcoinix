@@ -1,78 +1,90 @@
-> ⚠️ **Notice:** This project is a community-maintained fork of the original [fort-nix/nix-bitcoin](https://github.com/fort-nix/nix-bitcoin) repository, which was archived and deprecated in August 2026. The original state of the upstream repository at the time of forking is tagged in our git history as `forked`.
-
-## About the Project
-
-**bitcoinix** is a community-driven continuation of [nix-bitcoin](https://github.com/fort-nix/nix-bitcoin) — a collection of Nix packages and NixOS modules designed to easily and securely deploy full-featured Bitcoin nodes and related services.
-
-The goal of this fork is to build upon the work of the original authors, keep the project alive and compatible with current NixOS releases, and ensure its long-term maintainability.
-
-### Key Focus & Scope Changes
-
-* **Core Focus:** We prioritize maximum stability, security, and reliable maintenance of essential infrastructure components.
-* **Minimalization & Streamlining:** The original upstream project accumulated a wide range of additional services and extensions. To ensure quality and sustainable maintenance, we are removing or decoupling software that is unmaintained, archived upstream, or requires disproportionate effort to maintain.
-
----
-
-### Links & Historical Reference
-* **Original Project:** [fort-nix/nix-bitcoin](https://github.com/fort-nix/nix-bitcoin)
-* **Original Documentation & History:** For historical documentation and releases up to v0.0.139, please refer to the archived [fort-nix/nix-bitcoin](https://github.com/fort-nix/nix-bitcoin) repository. The original state at the point of forking is tagged in this repository as `forked`.
-
-
 <p align="center">
   <img
-    width="320"
-    src="docs/img/nix-bitcoin-logo.png"
-    alt="nix-bitcoin logo">
+    width="480"
+    src="assets/logo-text.png"
+    alt="bitcoinix logo">
 </p>
 <br/>
 <p align="center">
-    <a href="https://github.com/fort-nix/nix-bitcoin/actions" target="_blank">
-        <img src="https://github.com/fort-nix/nix-bitcoin/actions/workflows/test.yml/badge.svg?branch=master"
+    <a href="https://github.com/bitcoinix/bitcoinix/actions" target="_blank">
+        <img src="https://github.com/bitcoinix/bitcoinix/actions/workflows/test.yml/badge.svg?branch=master"
              alt="Github Actions status">
     </a>
-    <a href="https://github.com/fort-nix/nix-bitcoin/releases/latest" target="_blank">
-        <img src="https://img.shields.io/github/v/release/fort-nix/nix-bitcoin" alt="GitHub tag (latest SemVer)">
+    <a href="https://github.com/bitcoinix/bitcoinix/releases/latest" target="_blank">
+        <img src="https://img.shields.io/github/v/release/bitcoinix/bitcoinix" alt="GitHub tag (latest SemVer)">
     </a>
-    <a href="https://github.com/fort-nix/nix-bitcoin/commits/master" target="_blank">
-        <img src="https://img.shields.io/github/commit-activity/y/fort-nix/nix-bitcoin" alt="GitHub commit activity">
+    <a href="https://github.com/bitcoinix/bitcoinix/commits/master" target="_blank">
+        <img src="https://img.shields.io/github/commit-activity/y/bitcoinix/bitcoinix" alt="GitHub commit activity">
     </a>
-    <a href="https://github.com/fort-nix/nix-bitcoin/graphs/contributors" target="_blank">
-        <img src="https://img.shields.io/github/contributors-anon/fort-nix/nix-bitcoin" alt="GitHub contributors">
-    </a>
-    <a href="https://github.com/fort-nix/nix-bitcoin/releases" target="_blank">
-        <img src="https://img.shields.io/github/downloads/fort-nix/nix-bitcoin/total" alt="GitHub downloads">
+    <a href="https://github.com/bitcoinix/bitcoinix/graphs/contributors" target="_blank">
+        <img src="https://img.shields.io/github/contributors-anon/bitcoinix/bitcoinix" alt="GitHub contributors">
     </a>
 </p>
 <br/>
 
-nix-bitcoin is a collection of Nix packages and NixOS modules for easily installing **full-featured Bitcoin nodes** with an emphasis on **security**.
+> [!NOTE]
+> This project and its documentation are a **work in progress**. Parts of the project
+> and the documentation may change and may be outdated.
+
+**bitcoinix** is a collection of Nix packages and NixOS modules for easily installing
+**full-featured Bitcoin nodes** with an emphasis on **security**.
+
+It is a community fork of [nix-bitcoin](https://github.com/fort-nix/nix-bitcoin), which was
+archived in August 2026. bitcoinix is a community initiative to keep the project maintained
+and to continue its development.
+
+* **Original project:** [fort-nix/nix-bitcoin](https://github.com/fort-nix/nix-bitcoin)
+* **Historical documentation and releases up to v0.0.139:** see the archived
+  [fort-nix/nix-bitcoin](https://github.com/fort-nix/nix-bitcoin) repository.
+  The state of the original repository at the time of forking is tagged `forked` in this repository.
 
 Overview
 ---
-nix-bitcoin can be used for personal or merchant wallets, public infrastructure or
+bitcoinix can be used for personal or merchant wallets, public infrastructure or
 for Bitcoin application backends. In all cases, the aim is to provide security and
-privacy by default. However, while nix-bitcoin is used in production today, it is
+privacy by default. However, while bitcoinix is used in production today, it is
 still considered experimental.
 
-nix-bitcoin nodes can be deployed on dedicated hardware, virtual machines or containers.
+bitcoinix nodes can be deployed on dedicated hardware, virtual machines or containers.
 The Nix packages and NixOS modules can be used independently and combined freely.
 
-nix-bitcoin is built on top of Nix and [NixOS](https://nixos.org/) which provide powerful abstractions to keep it highly customizable and
-maintainable. Testament to this are nix-bitcoin's robust security features and its potent test framework.  However,
-running nix-bitcoin does not require any previous experience with the Nix ecosystem.
+bitcoinix is built on top of Nix and [NixOS](https://nixos.org/) which provide powerful abstractions to keep it highly customizable and
+maintainable. Testament to this are its robust security features and its potent test framework. However,
+running bitcoinix does not require any previous experience with the Nix ecosystem.
+
+> [!WARNING]
+> Note that the NixOS option namespace is still `nix-bitcoin.*` (e.g. `nix-bitcoin.configVersion`).
+> It is kept to not break existing configurations.
+
+Project direction
+---
+This is a summary of the proposal and community discussion on [issue #12](https://github.com/bitcoinix/bitcoinix/issues/12) regarding
+the project's direction, supported features, and hardware.
+
+* **Upstream first:** Most packages should move upstream to [nixpkgs](https://github.com/NixOS/nixpkgs).
+  Ideally, bitcoinix serves solely as a collection of securely cooperating service modules
+  (see [issue #7](https://github.com/bitcoinix/bitcoinix/issues/7)).
+* **New services:** To request support for a new project or package, please open an issue or PR
+  so that its addition can be discussed.
+* **No inactive projects:** Projects with a long-term lack of activity, maintenance or development
+  are not added. Existing unmaintained projects are removed or migrated to active forks
+  (e.g. [PR #1](https://github.com/bitcoinix/bitcoinix/pull/1)).
+* **`master` is unstable (for now):** `master` sees a faster pace of changes for a while, so treat it as
+  *bitcoinix unstable*. All tests pass before a change is merged, but not every issue may be caught.
+  Please report bugs, patches are always welcome.
+* **Deployment examples:** [bitcoinix-examples](https://github.com/bitcoinix/bitcoinix-examples)
+  contains deployment samples for bitcoinix, including a [Colmena](https://github.com/bitcoinix/bitcoinix-examples/tree/main/colmena)
+  example. Contributions for other tools are welcome.
 
 Get started
 ---
 - See the [examples](examples/README.md) for an overview of all features.
 - To setup a new node from scratch, see the [installation instructions](docs/install.md).
-- To add nix-bitcoin to an existing NixOS configuration, see [importable-configuration.nix](examples/importable-configuration.nix)
+- To add bitcoinix to an existing NixOS configuration, see [importable-configuration.nix](examples/importable-configuration.nix)
   and the [Flake example](examples/flakes/flake.nix).
 
 Docs
 ---
-Hint: To show a table of contents, click the button (![Github TOC button](docs/img/github-table-of-contents.svg)) in the
-top left corner of the documents.
-
 <!-- TODO-EXTERNAL: -->
 <!-- Change query to `nix-bitcoin` when upstream search has been fixed -->
 * [NixOS options search](https://search.nixos.org/flakes?channel=unstable&sort=relevance&type=options&query=bitcoin)
@@ -91,14 +103,17 @@ NixOS modules ([src](modules/modules.nix))
 * Application services
   * [bitcoind](https://github.com/bitcoin/bitcoin)
   * [clightning](https://github.com/ElementsProject/lightning) with support for announcing an onion service
-    and [database replication](docs/services.md#setup-clightning-database-replication).\
+    and [database replication](docs/services.md#clightning-database-replication).\
     Available plugins:
     * [clboss](https://github.com/ZmnSCPxj/clboss): automated C-Lightning Node Manager
+    * [clnrest](https://docs.corelightning.org/docs/rest): REST API and websocket notifications for clightning
     * [currencyrate](https://github.com/lightningd/plugins/tree/master/currencyrate): currency converter
+    * [feeadjuster](https://github.com/lightningd/plugins/tree/master/feeadjuster): automatically adjusts channel fees to keep channels balanced
     * [monitor](https://github.com/lightningd/plugins/tree/master/monitor): helps you analyze the health of your peers and channels
     * [rebalance](https://github.com/lightningd/plugins/tree/master/rebalance): keeps your channels balanced
     * [trustedcoin](https://github.com/nbd-wtf/trustedcoin) ([experimental](docs/services.md#trustedcoin)): replaces bitcoind with trusted public explorers
     * [zmq](https://github.com/lightningd/plugins/tree/master/zmq): publishes notifications via ZeroMQ to configured endpoints
+  * [clightning-rest](https://github.com/Ride-The-Lightning/c-lightning-REST): REST API for clightning
   * [lnd](https://github.com/lightningnetwork/lnd) with support for announcing an onion service and [static channel backups](https://github.com/lightningnetwork/lnd/blob/master/docs/recovery.md)
     * [Lightning Loop](https://github.com/lightninglabs/loop)
     * [Lightning Pool](https://github.com/lightninglabs/pool)
@@ -121,21 +136,18 @@ NixOS modules ([src](modules/modules.nix))
 
 Security
 ---
-See [SECURITY.md](SECURITY.md) for the historical security fund policy and past vulnerability reports.
-
-nix-bitcoin aims to achieve a high degree of security by building on the following principles:
+bitcoinix aims to achieve a high degree of security by building on the following principles:
 
 * **Simplicity:** Only services enabled in `configuration.nix` and their dependencies are installed, support for [doas](https://github.com/Duncaen/OpenDoas) ([sudo alternative](https://lobste.rs/s/efsvqu/heap_based_buffer_overflow_sudo_cve_2021#c_c6fcfa)), code is continuously reviewed and refined.
-* **Integrity:** The Nix package manager guarantees that all dependencies are exactly specified, packages can be built from source to reduce reliance on binary caches, nix-bitcoin merge commits are signed, all commits are approved by multiple nix-bitcoin developers, upstream packages are cryptographically verified where possible, we use this software ourselves.
+* **Integrity:** The Nix package manager guarantees that all dependencies are exactly specified, packages can be built from source to reduce reliance on binary caches, release tags are signed with maintainer keys (see [SECURITY.md](SECURITY.md)), upstream packages are cryptographically verified where possible, we use this software ourselves.
 * **Principle of Least Privilege:** Services operate with least privileges; they each have their own user and are restricted further with [systemd features](pkgs/lib.nix), [RPC whitelisting](modules/bitcoind-rpc-public-whitelist.nix) and [netns-isolation](modules/netns-isolation.nix). There's a non-root user *operator* to interact with the various services.
-* **Defense-in-depth:** nix-bitcoin supports a [hardened kernel](https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/profiles/hardened.nix), services are confined through discretionary access control, Linux namespaces, [dbus firewall](modules/security.nix) and seccomp-bpf with continuous improvements.
+* **Defense-in-depth:** bitcoinix supports a [hardened kernel](https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/profiles/hardened.nix), services are confined through discretionary access control, Linux namespaces, [dbus firewall](modules/security.nix) and seccomp-bpf with continuous improvements.
 
-Note that if the machine you're deploying *from* is insecure, there is nothing nix-bitcoin can do to protect itself.
+Note that if the machine you're deploying *from* is insecure, there is nothing bitcoinix can do to protect itself.
 
-Security fund
----
-The nix-bitcoin security fund is closed and no longer accepts reward submissions or donations.
-See [Security Fund](./SECURITY.md#nix-bitcoin-security-fund) for the historical policy.
+There is no security fund. The project relies on responsible vulnerability reports and on the
+good faith of the community.
+See [SECURITY.md](SECURITY.md) for how to report a vulnerability and for past reports.
 
 Developing
 ---
@@ -143,6 +155,6 @@ See [dev/README](./dev/README.md).
 
 Troubleshooting
 ---
-If you are having problems with nix-bitcoin check the [FAQ](docs/faq.md) or submit an issue.\
-There's also a Matrix room at [#general:nixbitcoin.org](https://matrix.to/#/#general:nixbitcoin.org).\
+If you are having problems with bitcoinix, check the [FAQ](docs/faq.md) or
+[submit an issue](https://github.com/bitcoinix/bitcoinix/issues).\
 We are always happy to help.

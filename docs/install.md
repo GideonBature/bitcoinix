@@ -1,11 +1,19 @@
-# Tutorial: Install and configure NixOS for nix-bitcoin on a dedicated machine
+# Tutorial: Install and configure NixOS for bitcoinix on a dedicated machine
+
+> [!NOTE]
+> This document is inherited from nix-bitcoin, the predecessor project. It is a work in progress and may be outdated.
+
+> [!WARNING]
+> This documentation may be outdated or contain installation steps that do not work with
+> bitcoinix yet (for example, release fetching still points at the upstream nix-bitcoin project).
+> Please report problems at <https://github.com/bitcoinix/bitcoinix/issues>.
 
 This tutorial describes how to manage your Bitcoin node comfortably from your personal computer with the deployment tool [krops](https://github.com/krebs/krops).
-However, nix-bitcoin is agnostic to the deployment method and can be used with different or without such tools (see [examples](../examples/README.md)).
+However, bitcoinix is agnostic to the deployment method and can be used with different or without such tools (see [examples](https://github.com/bitcoinix/bitcoinix/blob/master/examples/README.md)).
 
 ## 0. Preparation
 
-1. Find a machine to deploy nix-bitcoin on (see [hardware.md](hardware.md)).
+1. Find a machine to deploy bitcoinix on (see [hardware.md](hardware.md)).
 
 2. Optional: Make sure you have the latest firmware for your system (BIOS, microcode updates).
 
@@ -210,22 +218,28 @@ You can also build Nix from source by following the instructions at https://nixo
 1. Clone this project
 
     ```
-    git clone https://github.com/fort-nix/nix-bitcoin
+    git clone https://github.com/bitcoinix/bitcoinix
     ```
 
-2. Create a new directory for your nix-bitcoin node config and copy initial files from nix-bitcoin
+2. Create a new directory for your bitcoinix node config and copy initial files from bitcoinix
 
     ```
     mkdir nix-bitcoin-node
     cd nix-bitcoin-node
-    cp -r ../nix-bitcoin/examples/{configuration.nix,shell.nix,krops,.gitignore} .
+    cp -r ../bitcoinix/examples/{configuration.nix,shell.nix,krops,.gitignore} .
     ```
 
-3. Obtain the hash of the latest nix-bitcoin release
+3. Obtain the hash of the latest bitcoinix release
 
     ```
-    ../nix-bitcoin/helper/fetch-release > nix-bitcoin-release.nix
+    ../bitcoinix/helper/fetch-release > nix-bitcoin-release.nix
     ```
+
+    > [!WARNING]
+    > `fetch-release` is not adapted to bitcoinix yet: it still downloads and verifies the latest
+    > release of the archived upstream project
+    > ([fort-nix/nix-bitcoin](https://github.com/fort-nix/nix-bitcoin)), not of bitcoinix.
+    > bitcoinix does not publish signed releases yet.
 
 #### Optional: Specify the system of your node
 This enables evaluating your node config on a machine that has a different system platform
@@ -324,7 +338,7 @@ Other available systems:
     deploy
     ```
 
-    This will now create a nix-bitcoin node on the target machine.
+    This will now create a bitcoinix node on the target machine.
 
 8. You can now access `bitcoin-node` via ssh
 
@@ -332,11 +346,11 @@ Other available systems:
     ssh operator@bitcoin-node
     ```
 
-    Note that you're able to log in as the unprivileged `operator` user because nix-bitcoin automatically authorizes the ssh key added to `root`.
+    Note that you're able to log in as the unprivileged `operator` user because bitcoinix automatically authorizes the ssh key added to `root`.
 
 For security reasons, all normal system management tasks can and should be performed with the `operator` user. Logging in as `root` should be done as rarely as possible.
 
 See also:
-- [Migrating existing services to nix-bitcoin](configuration.md#migrate-existing-services-to-nix-bitcoin)
+- [Migrating existing services to bitcoinix](configuration.md#migrate-existing-services-to-bitcoinix)
 - [Managing your deployment](configuration.md#managing-your-deployment)
 - [Using services](services.md)

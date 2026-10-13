@@ -6,3 +6,6 @@ __*
 
 # Nix build output symlink
 result
+
+# mdBook output
+/book

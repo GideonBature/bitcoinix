@@ -1,5 +1,13 @@
 # Managing your deployment
 
+> [!NOTE]
+> This document is inherited from nix-bitcoin, the predecessor project. It is a work in progress and may be outdated.
+
+> [!WARNING]
+> This documentation may be outdated or contain installation steps that do not work with
+> bitcoinix yet (for example, release fetching still points at the upstream nix-bitcoin project).
+> Please report problems at <https://github.com/bitcoinix/bitcoinix/issues>.
+
 This section applies to users of the deployment method described in the [installation guide](./install.md).
 
 ## Deployment shell
@@ -13,7 +21,7 @@ You now have access to deployment commands:
 - `h`, `help`\
   Show help
 
-## Updating nix-bitcoin
+## Updating bitcoinix
 Run `update-nix-bitcoin` from the deployment shell.\
 This fetches the latest release, verifies its signatures and updates `nix-bitcoin-release.nix`.
 
@@ -31,8 +39,8 @@ For a general introduction to the Nix and NixOS ecosystem, see [nix.dev](https:/
 ## Set options
 
 All features and services are configurable through options. You can find a list of
-supported options at the top of each nix-bitcoin [module](../modules/modules.nix)
-(Examples: [bitcoind.nix](../modules/bitcoind.nix), [btcpayserver.nix](../modules/btcpayserver.nix)).
+supported options at the top of each bitcoinix [module](https://github.com/bitcoinix/bitcoinix/blob/master/modules/modules.nix)
+(Examples: [bitcoind.nix](https://github.com/bitcoinix/bitcoinix/blob/master/modules/bitcoind.nix), [btcpayserver.nix](https://github.com/bitcoinix/bitcoinix/blob/master/modules/btcpayserver.nix)).
 
 Example: Set some `bitcoind` options by adding these lines to your `configuration.nix`:
 ```nix
@@ -130,7 +138,7 @@ networking.firewall.allowedTCPPorts = [ config.services.electrs.port ];
 
 You can use the same approach to allow connections to other services.
 
-# Migrate existing services to nix-bitcoin
+# Migrate existing services to bitcoinix
 
 ## Example: bitcoind
 
@@ -139,11 +147,11 @@ You can use the same approach to allow connections to other services.
 ssh root@nix-bitcoin-node 'systemctl stop bitcoind'
 # Also stop bitcoind on the node that you'll be copying data from
 
-# 2. Copy the data to the nix-bitcoin node
+# 2. Copy the data to the bitcoinix node
 # Important: Add a trailing slash to the source path
 rsync /path/to/existing/bitcoind-datadir/ root@nix-bitcoin-node:/var/lib/bitcoind
 
-# 3. Fix data dir permissions on the nix-bitcoin node
+# 3. Fix data dir permissions on the bitcoinix node
 ssh root@nix-bitcoin-node 'chown -R bitcoin: /var/lib/bitcoind'
 
 # 4. Start bitcoind
@@ -165,13 +173,13 @@ Some services require extra steps:
   ```shell
   # Export (on the other node)
   sudo -u postgres pg_dump YOUR_BTCPAYSERVER_DB > export.sql
-  # Restore (on the nix-bitcoin node)
+  # Restore (on the bitcoinix node)
   sudo -u postgres psql btcpaydb < export.sql
   ```
 
 # Use bitcoind from another node
 
-Here's how to use a bitcoind instance running on another node within a nix-bitcoin config:
+Here's how to use a bitcoind instance running on another node within a bitcoinix config:
 
 ```nix
 imports = [ <nix-bitcoin/modules/presets/bitcoind-remote.nix> ];
@@ -183,7 +191,7 @@ services.bitcoind = {
   address = "10.10.0.2";
   rpc.address = "10.10.0.2";
 
-  # Some nix-bitcoin services require whitelisted bitcoind p2p connections
+  # Some bitcoinix services require whitelisted bitcoind p2p connections
   # to work reliably.
   # Search for `whitelistedPort` in this repo to see the affected services.
   # If you're using one of these services, either add a whitelisted p2p port
@@ -218,7 +226,7 @@ systemd.services.<service>.serviceConfig.IPAddressAllow = [ ${services.bitcoind.
 > not** accessed via Tor.
 
 
-Now save the password of the RPC user to the following files on your nix-bitcoin node:
+Now save the password of the RPC user to the following files on your bitcoinix node:
 ```shell
 $secretsDir/bitcoin-rpcpassword-privileged
 $secretsDir/bitcoin-rpcpassword-public
@@ -247,7 +255,7 @@ Note: This only works for services that are not required by other active service
 
 ## Secrets dir
 
-The secrets dir is set by option `nix-bitoin.secretsDir` and has the
+The secrets dir is set by option `nix-bitcoin.secretsDir` and has the
 following default values:
 
 - If you're using the krops deployment method: `/var/src/secrets`
